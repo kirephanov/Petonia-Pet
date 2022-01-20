@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-8">
+            {% if marker.photo %}
+            <div class="text-center"><img src="{{ marker.photo.url }}" class="img-fluid rounded img-single"></div>
+            {% else %}
+            <div class="text-center"><img src="{% static 'images\none_photo_480.png' %}" class="img-fluid rounded">
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-4">
+            <p><h5>{{ marker.name }}</h5></p>
+            <p><h5><span class="footer-green">Категория: </span>{{ marker.search }}</h5></p>
+            <p><h5><span class="footer-green">Животное: </span>{{ marker.animal }}</h5></p>
+            <p><h5><span class="footer-green">Телефон: </span>{{ marker.telephone }}</h5></p>
+            <p><h5>{{ marker.street }}, {{ marker.city }}, {{ marker.region }}, {{ marker.country }}</h5> <a
+                href="{% url 'map' %}" class="link-single">Открыть карту</a></p>
+            {% if marker.comment %}
+            <p class="geo_data"><h5 class="footer-green">Дополнительная информация: </h5>{{ marker.comment }}</p>
+            {% endif %}
+            <br><i class="fa fa-eye" aria-hidden="true"></i> {{ marker.views }}
+        </div>
+    </div>
+</div>
+{% endblock %}

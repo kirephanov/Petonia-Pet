@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-3">
+            {% load cache %}
+            {% cache 600 sidebar %}
+            <div class="list-group mb-3">
+                <a href="{% url 'board' %}" class="list-group-item list-group-item-action">Все объявления</a>
+            </div>
+            <div class="list-group mb-3">
+                <a href="{% url 'popular' %}" class="list-group-item list-group-item-action">Популярно</a>
+            </div>
+            <div class="list-group mb-3">
+                <p>Категория:</p>
+                {% for item in categories %}
+                <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.looking_for }}</a>
+                {% endfor %}
+            </div>
+            <div class="list-group mb-3">
+                <p>Животное:</p>
+                {% for item in animals %}
+                <a href="{% url 'animal' item.pk %}" class="list-group-item list-group-item-action">{{ item.animal_name }}</a>
+                {% endfor %}
+            </div>
+            <div class="dropdown">
+                <p>Область:</p>
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Не выбрано
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    {% for item in regions %}
+                    <li><a class="dropdown-item" href="{% url 'region' item.pk %}">{{ item.reg_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endcache %}
+        </div>
+
+        <div class="col-md-9">
+            {% load cache %}
+            {% cache 2 post_animal %}
+            {% for item in page_obj %}
+            <div class="card text-dark bg-light mb-3" style="max-width: 40rem;">
+                <a class="post-line" href="{% url 'post' item.pk %}">
+                    <div class="card-header bg-transparent">
+                        {% if item.photo %}
+                        <img src="{{ item.photo.url }}" class="card-img-top rounded"> <br>
+                        {% endif %}
+                    </div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                    </div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">Категория: {{ item.search }}</h5>
+                        <h5 class="card-title">Животное: {{ item.animal }}</h5>
+                        <h5 class="card-title">Телефон: 8 XXX XXX-XX-XX (<span
+                                class="footer-green">Показать телефон</span>)</h5>
+                        {% if item.comment %}
+                        <h5 class="card-title">Дополнительная информация:</h5>
+                        <p class="card-text">{{ item.comment }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">{{ item.street }}, г. {{ item.city }}, обл. {{ item.region }}, {{ item.country }}</h5>
+                    </div>
+                    <div class="card-body text-secondary">
+                        <i class="fa fa-eye" aria-hidden="true"></i> {{ item.views }}
+                    </div>
+                    <div class="card-footer bg-transparent">{{ item.created_at|date:"Y-m-d H:i" }}</div>
+                </a>
+            </div>
+            {% endfor %}
+            {% endcache %}
+        </div>
+    </div>
+    <nav class="my-pagination-center">
+        <ul class="my-pagination d-flex justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">«</a></li>
+            {% endif%}
+            {% for p in page_obj.paginator.page_range %}
+            {% if page_obj.number == p %}
+            <li><a class="active" href="?page={{ p }}">{{ p }}</a></li>
+            {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+            <li><a href="?page={{ p }}">{{ p }}</a></li>
+            {% endif%}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">»</a></li>
+            {% endif%}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load cache %}
+{% cache 1800 partners %}
+<div class="container mt-3">
+    <div class="container">
+        <div class="container mb-5">
+            <h2 class="footer-green header-index">Стать партнером</h2>
+            <p class="text-index">Проект "Petonia – Поиск питомцев" – инновационный подход для решения одной из проблем стран СНГ, проблемы бродячих животных. В настоящее время ее решение проводится радикальными способами - это неправильно и бесчеловечно. </p>
+        </div>
+        <div class="row row-cols-2">
+            <div class="col mb-5">
+                <div class="text-center"><img src="{% static 'images\part3.png' %}" class="img-fluid" alt="Фото"></div>
+            </div>
+            <div class="col mb-5">
+                <p class="text-index">Наш проект предлагает другой подход: с помощью интерактивной карты и объявлений на нашем сайте, люди смогут узнать примерную область, где находятся бродячие животные.</p>
+            </div>
+            <div class="col mb-5">
+                <p class="text-index">Следующий шаг – передача информации специальным службам, чтобы они забрали животное в пункт временного пребывания и в дальнейшем животному нашли новый дом. </p>
+            </div>
+            <div class="col mb-5">
+                <div class="text-center"><img src="{% static 'images\part1.png' %}" class="img-fluid" alt="Фото"></div>
+            </div>
+            <div class="col mb-5">
+                <div class="text-center"><img src="{% static 'images\part2.png' %}" class="img-fluid" alt="Фото"></div>
+            </div>
+            <div class="col mb-5">
+                <p class="text-index">Для полноценной работы нашего сайта используется помощь всех неравнодушных людей, которые указывают местоположение, а также фотографии.</p><br>
+                <div class="text-center">
+                    <h5 class="footer-green">petoniapets@mail.com</h5> <br>
+
+                    <a href="mailto:petoniapets@mail.com" class="floating-button">Связаться с нами</a></div>
+            </div>
+        </div>
+        <h3 class="footer-green header-index">Спасибо, что помогаете!</h3>
+    </div>
+    </div>
+	{% endcache %}
+    {% endblock %}

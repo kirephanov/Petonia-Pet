@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="marker_form">
+    <form method="post" enctype="multipart/form-data">
+        <div class="container mt-3">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <label for="search" class="col-sm-2 col-form-label">Категория:</label>
+                <div class="col-sm-10">
+                    {{ form.search }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="animal" class="col-sm-2 col-form-label">Питомец:</label>
+                <div class="col-sm-10">
+                    {{ form.animal }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Имя:</label>
+                <div class="col-sm-10">
+                    {{ form.name }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="telephone" class="col-sm-2 col-form-label">Телефон:</label>
+                <div class="col-sm-10">
+                    {{ form.telephone }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="street" class="col-sm-2 col-form-label">Местоположение:</label>
+                <div class="col-sm-10">
+                    {{ form.street }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="city" class="col-sm-2 col-form-label">Город:</label>
+                <div class="col-sm-10">
+                    {{ form.city }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="region" class="col-sm-2 col-form-label">Область:</label>
+                <div class="col-sm-10">
+                    {{ form.region }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="country" class="col-sm-2 col-form-label">Страна:</label>
+                <div class="col-sm-10">
+                    {{ form.country }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="comment" class="col-sm-2 col-form-label">Комментарий:</label>
+                <div class="col-sm-10">
+                    {{ form.comment }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="photo" class="col-sm-2 col-form-label">Фотография:</label>
+                <div class="col-sm-10">
+                    {{ form.photo }}
+                </div>
+            </div>
+            <span>{{ error }}</span><br>
+            <button class="btn btn-danger" type="reset"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button class="btn btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+    </form>
+</div>
+</div>
+{% endblock %}

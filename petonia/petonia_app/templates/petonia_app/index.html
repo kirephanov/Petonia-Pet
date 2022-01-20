@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load cache %}
+{% cache 1800 index %}
+<img src="{% static 'images\banner.png' %}" class="img-fluid" alt="Баннер">
+<div class="container mt-3">
+    <div class="container">
+        <div class="container mb-5">
+            <h2 class="footer-green header-index">О проекте</h2>
+            <p class="text-index">"Petonia – Поиск питомцев" – это студенческая организация по поиску бездомных животных: кошек и собак, созданная в сентябре 2021 года. И этот старт дает уже свои положительные результаты, особенно в то время, когда количество бездомных собак и кошек увеличивается с каждым днем.</p>
+        </div>
+        <div class="row row-cols-2">
+            <div class="col mb-5">
+                <img src="{% static 'images\index_pet_2.png' %}" class="img-fluid float-end rounded" alt="Фото">
+            </div>
+            <div class="col mb-5">
+                <img src="{% static 'images\index_pet_1.png' %}" class="img-fluid float-start rounded" alt="Фото">
+            </div>
+        </div>
+        <div class="row row-cols-2">
+            <div class="col mb-5">
+                <h2 class="footer-green header-index">Наша цель</h2>
+                <p class="text-index">Найти как можно больше бездомных кошек и собак, отдать их в хорошие руки таких людей, которые станут для них добрыми хозяевами и окружат их заботой.</p>
+            </div>
+            <div class="col mb-5">
+                <h2 class="footer-green header-index">О системе</h2>
+                <p class="text-index">Принцип действия системы заключается в уникальной карте с маркерами, которые добавляют сами пользователи. Эти маркеры обозначают примерную область нахождения бездомного животного.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcache %}
+{% endblock %}
