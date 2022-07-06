@@ -1,4 +1,4 @@
 ### Petonia - Поиск питомцев
 Pet owner search platform
 
-### View project: <a href="kirephanov.github.io/petonia-pet_demo/">Click</a>
+### View project: [Petonia - Поиск питомцев](https://kirephanov.github.io/Petonia-Pet_Demo/)
